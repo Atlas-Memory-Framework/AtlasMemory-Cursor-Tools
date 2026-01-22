@@ -9,4 +9,4 @@ Repo-agnostic Cursor skills and sub-agents for planning and execution.
 FYI: These were authored with `5.2-codex` in mind.
 
 ## Visual
-`./atlasmemory-cursor-skills-agents-linkedin-visual.png`
+![AtlasMemory Cursor Skills & Agents](./atlasmemory-cursor-skills-agents.png)
