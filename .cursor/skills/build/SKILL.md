@@ -15,6 +15,10 @@ Implement the current plan artifact exactly, honoring phases, tasks, owners, and
   - If not, stop and instruct the user to run `/plan` to resolve the blocker(s), or log an explicit override DR entry.
 - Identify current phase, tasks, owners, exit criteria, and gates.
 - Identify dependencies, merge points, and allowed parallel workstreams.
+- Conformance for parallelism:
+  - Each file delta has a single explicit owner (WS/agent) until an explicit merge point.
+  - If multiple workstreams would touch the same file, require an integration task at a merge point and treat that file as owned by the integrator.
+- If build discovers missing plan detail that changes intent (interfaces, invariants, scope, rollout, tests), stop and require a plan patch + DR entry (do not redesign silently during build).
 - If ambiguity exists, stop and require a plan patch + DR entry.
 
 ## Execution model

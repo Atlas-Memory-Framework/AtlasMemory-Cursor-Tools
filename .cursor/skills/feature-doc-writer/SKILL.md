@@ -14,6 +14,7 @@ Update only the Design section in the current plan artifact with clear, consiste
 - Evaluation Criteria
 - Plain-English Behavior
 - System Fit / Integration Points
+- Non-Functional Requirements (perf/security/privacy/cost/operability)
 - Alternatives Considered
 - Open Questions (true unknowns only)
 

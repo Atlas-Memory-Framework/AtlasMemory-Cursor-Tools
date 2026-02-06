@@ -8,6 +8,14 @@ description: Run required planning-phase reviews and log dispositions in the cur
 ## Purpose
 Run planning-phase review passes and update the Planning Reviews section with findings and dispositions.
 
+## Plan tier awareness (Lite vs Full)
+The plan artifact contains `PlanTier` in Plan State. Preserve the exact review schemas, but calibrate expectations:
+- `PlanTier: Lite`: keep findings focused on correctness, safety, missing decisions, missing tests, unclear ownership/merge points, and rollback. Avoid demanding Full-level detail that doesn't change implementation outcomes.
+- `PlanTier: Full`: higher bar for completeness and risk coverage is expected.
+
+## Finding severity labeling
+- If a review point is optional and does not block correct implementation, prefix the finding text with `Non-blocker:` (keep schema and ids unchanged).
+
 ## Review schema (must be used verbatim)
 Each review must be written into the plan artifact using this exact structure so that validators and follow-on agents can reliably parse it.
 

@@ -8,6 +8,14 @@ description: Perform planning-phase document reviews for the current plan artifa
 ## Scope
 Only read the current plan artifact. Do not rely on external context.
 
+## Plan tier awareness (Lite vs Full)
+Read `PlanTier` in the plan's Plan State and calibrate strictness:
+- `PlanTier: Lite`: optimize for shipping speed. Focus findings on true blockers, high-risk gaps, contradictions, and missing decisions/tests/rollback. Avoid "polish-only" asks (wordsmithing, exhaustive alternatives, overly detailed breakdowns) unless they prevent correct implementation.
+- `PlanTier: Full`: engineering-grade completeness. It is acceptable to call out missing detail that could cause rework, incorrectness, operational risk, or unclear parallelization/merge points.
+
+## Finding severity labeling
+- If a finding is optional and does not block correct implementation, prefix the finding text with `Non-blocker:` (keep the schema and ids unchanged).
+
 ## Modes and outputs
 ### mode=zero-context
 Return findings using this exact schema (with stable ids):
