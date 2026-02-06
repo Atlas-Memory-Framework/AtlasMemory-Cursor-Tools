@@ -16,6 +16,10 @@ Read `PlanTier` in the plan's Plan State and calibrate strictness:
 ## Finding severity labeling
 - If a finding is optional and does not block correct implementation, prefix the finding text with `Non-blocker:` (keep the schema and ids unchanged).
 
+## User experience rule (no "go read the plan")
+- When pointing to a problem, include the minimum necessary excerpt in the chat response (copy the relevant line(s) or subsection) so the user can evaluate the finding without opening the plan file.
+- Patch suggestions should cite the section name and quote the line(s) they refer to when practical.
+
 ## Modes and outputs
 ### mode=zero-context
 Return findings using this exact schema (with stable ids):

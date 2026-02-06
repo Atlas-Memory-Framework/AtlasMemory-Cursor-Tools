@@ -18,3 +18,10 @@ Create the Implementation Plan section for build execution.
 - Build-time gates for each phase.
 - Test Plan including at least a minimal test matrix (risk -> test type -> where it runs).
 - Rollout/Deployment steps (even minimal) and an explicit rollback trigger + rollback steps.
+
+## User experience rule (no "go read the plan")
+- When asking the user to confirm plan readiness, paste the key parts directly in the chat response:
+  - File deltas (owned)
+  - Workstreams + owned files + merge points
+  - Phase list with exit criteria
+  - Test matrix + rollback

@@ -16,8 +16,15 @@ The plan artifact contains `PlanTier` in Plan State. Preserve the exact review s
 ## Finding severity labeling
 - If a review point is optional and does not block correct implementation, prefix the finding text with `Non-blocker:` (keep schema and ids unchanged).
 
+## User experience rule (no "go read the plan")
+- Any review material the user must act on (findings + dispositions) must be included directly in the chat response (paste the findings list and the disposition items you are asking the user to confirm).
+- Do not require the user to open the plan artifact to see what the reviewers wrote.
+
 ## Review schema (must be used verbatim)
 Each review must be written into the plan artifact using this exact structure so that validators and follow-on agents can reliably parse it.
+
+## Invocation note
+This skill is typically invoked by `/plan` during the Reviews stage. Users can run it directly for debugging, but normal workflow is `/plan` only.
 
 ### Common rules
 - Reviewers only see the current plan artifact (zero-context with respect to repo/chat).

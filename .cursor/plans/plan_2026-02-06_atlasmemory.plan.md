@@ -1,46 +1,41 @@
-# Plan SSOT Template
-
-Use this file to create a new plan doc when missing. Cursor will autoname it.
-Delete placeholder text but keep all sections.
-
-```md
-# Feature: <name>
+# Feature: TBD (feature request needed)
 
 ## Plan State
 PlanFormatVersion: 1
-PlanId: <auto or short unique id>
-Status: Draft | ContextAligned | FeatureChallenged | TechnicalChallenged | Planned | Approved | InBuild | Shipped
-CurrentStage: Context | Feature | Technical | Implementation | Build
-PlanTier: Lite | Full
-DeliveryMode: DevOnly | SharedDev | Staging | Prod
-ContextMode: UserProvided | RepoInferred | Greenfield
-LastUpdated: <YYYY-MM-DD>
-PrimaryOwner: <name/handle>
-BaseBranch: <e.g. main>
-BaseCommit: <git sha>
-TargetBranch: <e.g. feat/my-feature>
-Related: <issue/pr/link if any>
-NextRequiredUserAction: <none | pick option A/B/C for DR-xxx | accept risk Rn | provide context for Qn | run /plan again>
-BlockingDecision: <none | DR-xxx>
-UnresolvedBlockers: <0 | N>
-RubberStampSignals: <0 | N>  <!-- increment when user rubber-stamps required decisions -->
-LastGateRun: <YYYY-MM-DD>
+PlanId: plan-2026-02-06-001
+Status: Draft
+CurrentStage: Context
+PlanTier: Full
+DeliveryMode: DevOnly
+ContextMode: RepoInferred
+LastUpdated: 2026-02-06
+PrimaryOwner: matty
+BaseBranch: main
+BaseCommit: 8a10ed0ae22dbcec5d76882358c0129f3608a0a6
+TargetBranch: main
+Related: none
+NextRequiredUserAction: confirm ContextAlignment + provide feature idea (1-5 bullets)
+BlockingDecision: none
+UnresolvedBlockers: 1
+RubberStampSignals: 0
+LastGateRun: 2026-02-06
 
 ## Gate Results
-ContextAlignment: Pass | Fail | N/A
-FeatureClarity: Pass | Fail | N/A
-TechnicalClarity: Pass | Fail | N/A
-PlanReadiness: Pass | Fail | N/A
-PlanningReviewsComplete: Pass | Fail | N/A
+ContextAlignment: N/A
+FeatureClarity: N/A
+TechnicalClarity: N/A
+PlanReadiness: N/A
+PlanningReviewsComplete: N/A
 
 ## Accepted Unknowns
-- U1: <unknown> - impact radius - risk - tripwire - decision ref (DR-xxx)
+- None yet.
 
 ## SSOTs
-- <repo path / system / schema / doc>
+- `.cursor/skills/plan/reference.md`
+- `README.md`
 
 ## Invariants
-- <must-not-change constraints>
+- Do not infer feature requirements beyond explicit user input.
 
 ## Blocker Taxonomy
 - Blocker: Missing decision (requires DR entry)
@@ -68,127 +63,125 @@ Use Full for anything that affects architecture, integration points, contracts, 
 
 ## Context Snapshot
 ### Inputs Provided
-- <files/dirs/readmes pasted or referenced>
+- `README.md`
 
 ### System Understanding (agent summary)
-- <short summary>
-- Components:
-- Data flow:
-- Key abstractions:
-
-> If `ContextMode: Greenfield`, explicitly say so here (e.g. "No existing system context; planning from requirements-only") and list the key assumptions and tripwires.
+- This repo provides Cursor skills and planning/build agents used to create a Plan SSOT and implement it as written.
+- Components: `.cursor/skills/*` planning/build workflows, `.cursor/agents/*` reviewer and build agents.
+- Data flow: user runs `/plan` to produce a plan artifact, then `/build` executes the plan phases/tasks.
+- Key abstractions: Plan SSOT, deterministic gates, workstreams, planning reviews.
 
 ### Known Unknowns (ranked)
-1) ...
-2) ...
+1) The feature request to plan for.
+2) Desired delivery mode and plan tier constraints for that feature.
 
 ### Questions to Proceed (ranked)
-1) ...
-2) ...
+1) What is the feature idea? Provide 1–5 bullets with scope and desired behavior.
+2) Any constraints (timeline, risk tolerance, delivery mode, or must-not-change invariants)?
 
 ## Design (source of truth)
 ### Business Problem
+- TBD until feature request is provided.
 ### Goals
+- TBD.
 ### Non-Goals
+- TBD.
 ### Evaluation Criteria (how we judge success)
+- TBD.
 ### Plain-English Behavior (how it works)
+- TBD.
 ### System Fit / Integration Points
+- TBD.
 ### Non-Functional Requirements (perf/security/privacy/cost/operability)
+- TBD.
 ### Alternatives Considered (and why rejected)
+- TBD.
 ### Open Questions (true unknowns only)
+- Feature requirements and constraints.
 
 ## Challenge Artifacts
 ### Assumptions -> Tests (pass/fail)
-- A1: <assumption>
-  - Test: <how to validate>
-  - Pass/Fail criteria:
-  - Status: Untested | Tested | Accepted | Deferred (DR-xxx)
+- A1: The user will provide a concrete feature request for planning.
+  - Test: User provides 1–5 bullets describing scope and behavior.
+  - Pass/Fail criteria: Pass when requirements are supplied; fail otherwise.
+  - Status: Untested
 
 ### Risks (ranked) -> mitigation/owner/status
-- R1 (High): <risk>
-  - Mitigation:
-  - Owner:
-  - Status: Mitigated | Tested | Accepted | Deferred (DR-xxx)
-  - Trigger (if deferred):
+- R1 (High): Plan stalls or is incorrect due to missing requirements.
+  - Mitigation: Request feature scope and constraints before proceeding.
+  - Owner: planning agent
+  - Status: Deferred
+  - Trigger (if deferred): Feature input received.
 
 ### Failure Modes
-- FM1: <failure> - detection - prevention/mitigation
-- FM2: ...
+- FM1: Proceeding with a plan without clear requirements leads to wrong implementation.
 
 ### Measurable milestone(s)
-- Milestone:
-- Evidence:
+- Milestone: Feature requirements captured.
+- Evidence: Updated Design section with goals, evaluation criteria, and behavior.
 
 ## Implementation Plan
 ### File Deltas (exhaustive) + rationale
-- path/to/file.ext - change type (create/modify/delete) - owner (WSx / agent) - rationale
-- ...
+- TBD after feature definition.
 
 ### Workstreams (parallel groups) + merge points
-- WS1: <name> (Owner: <agent>)
-  - Scope:
-  - Dependencies:
-  - Owns files:
-    - path/to/file.ext
-  - Merge point / integration step:
-- WS2: ...
+- TBD after feature definition.
 
 ### Workstream file ownership (hard rule)
 - Every file in File Deltas is owned by exactly ONE workstream until an explicit merge point.
 - If two workstreams must touch the same file, create an explicit integration task at a merge point and assign that file to the integrator only.
 
 ### Integration / Merge Points Checklist
-- Merge point M1: <name>
-  - Inputs (workstreams/artifacts):
-  - Integration steps:
-  - Required gates to run at merge point:
+- TBD after feature definition.
 
 ### Phases and Tasks (mapped to workstreams)
-#### Phase 1: <name>
-- Scope:
+#### Phase 1: TBD
+- Scope: TBD.
 - Tasks (by workstream/owner):
-  - Owner: <agent>
-    - [ ] Task
-    - [ ] Task
-- Exit criteria (evidence):
+  - Owner: TBD
+    - [ ] TBD
+- Exit criteria (evidence): TBD.
 - Build-time gate(s):
   - [ ] Lint/format pass
   - [ ] Unit tests pass
   - [ ] Integration tests pass (if applicable)
 
-#### Phase 2: ...
+#### Phase 2: TBD
 
 ### Test Plan (build-time)
 #### Test Matrix (minimum)
-- Area/component - risk being tested - test type (unit/integration/e2e/manual) - where it runs
+- TBD.
 
 ### Rollout / Deployment
+- TBD.
 ### Rollback (required)
 For `PlanTier: Lite` + `DeliveryMode: DevOnly`, rollback can be as simple as "revert the commit" (or disable a flag). Keep this section minimal but explicit.
 #### Rollback trigger
+- TBD.
 #### Rollback steps
+- TBD.
 ### Observability / Telemetry (if applicable)
-For `PlanTier: Lite` + `DeliveryMode: DevOnly`, it is acceptable to write `N/A (dev-only, no users)` here.
+- N/A (dev-only, no users).
 
 ## Decision Log
-### DR-001: <Decision topic>
-- Stage: Context | Feature | Technical | Implementation | Build
-- Date:
-- ScopeAffected: <files/components/systems>
-- Decision:
-- Default if no response by: <date/time> -> <option>
+### DR-001: No decision yet
+- Stage: Context
+- Date: 2026-02-06
+- ScopeAffected: Plan artifact only
+- Decision: None (awaiting feature requirements)
+- Default if no response by: 2026-02-13 -> wait
 - Options considered:
-  - A) ...
-  - B) ...
-  - C) ...
+  - A) Proceed without requirements (not viable)
+  - B) Pause and request requirements
+  - C) End planning
 - Debate summary:
-  - For A:
-  - For B:
-  - For C:
-- Why chosen:
-- Consequences / follow-ups:
-- Status: Accepted | Revisit | Deferred
-- Revisit trigger (if not Accepted):
+  - For A: None
+  - For B: Ensures accurate plan
+  - For C: Not necessary if requirements forthcoming
+- Why chosen: Awaiting user input
+- Consequences / follow-ups: Provide feature idea and constraints
+- Status: Deferred
+- Revisit trigger (if not Accepted): Feature input received
 
 ## Planning Reviews
 ### Zero-Context Review (required)
@@ -227,4 +220,3 @@ For `PlanTier: Lite` + `DeliveryMode: DevOnly`, it is acceptable to write `N/A (
   - Accept: <finding-id> -> DR-xxx
   - Reject: <finding-id> -> rationale
   - Defer: <finding-id> -> DR-xxx + trigger
-```

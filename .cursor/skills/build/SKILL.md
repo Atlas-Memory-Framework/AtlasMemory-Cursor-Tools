@@ -21,6 +21,12 @@ Implement the current plan artifact exactly, honoring phases, tasks, owners, and
 - If build discovers missing plan detail that changes intent (interfaces, invariants, scope, rollout, tests), stop and require a plan patch + DR entry (do not redesign silently during build).
 - If ambiguity exists, stop and require a plan patch + DR entry.
 
+## User experience rule (no "go read the plan")
+- If build is blocked (ambiguity, missing decision, missing gate definition), paste the relevant excerpt(s) in the chat response:
+  - the phase/tasks that are blocked
+  - the exact missing decision or missing plan detail
+  - the recommended minimal plan patch to unblock
+
 ## Execution model
 - Phases are serial.
 - Workstreams can be parallel only if the plan says so.

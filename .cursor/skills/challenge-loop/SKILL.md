@@ -18,6 +18,10 @@ description: Run anti-sycophancy challenge iterations for ideation or technical 
 - Alternatives considered
 - Milestone(s)
 
+## User experience rule (no "go read the plan")
+- If the user is expected to review, choose, or correct anything, include the relevant excerpt directly in the chat response.
+- Do not require the user to open the plan artifact to see what changed; summarize deltas and paste the updated bullet(s) (e.g., the updated risks/assumptions/tests).
+
 ## Stop rule
 Stop when:
 - No unresolved decision-boundary blockers
