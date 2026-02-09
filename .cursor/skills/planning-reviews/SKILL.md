@@ -6,12 +6,7 @@ description: Run required planning-phase reviews and log dispositions in the cur
 # /planning-reviews
 
 ## Purpose
-Run planning-phase review passes and update the Planning Reviews section with findings and dispositions.
-
-## Plan tier awareness (Lite vs Full)
-The plan artifact contains `PlanTier` in Plan State. Preserve the exact review schemas, but calibrate expectations:
-- `PlanTier: Lite`: keep findings focused on correctness, safety, missing decisions, missing tests, unclear ownership/merge points, and rollback. Avoid demanding Full-level detail that doesn't change implementation outcomes.
-- `PlanTier: Full`: higher bar for completeness and risk coverage is expected.
+Run planning-phase review passes and update the Planning Reviews section with findings and dispositions. Do not write the plan artifact directly.
 
 ## Finding severity labeling
 - If a review point is optional and does not block correct implementation, prefix the finding text with `Non-blocker:` (keep schema and ids unchanged).
@@ -19,6 +14,9 @@ The plan artifact contains `PlanTier` in Plan State. Preserve the exact review s
 ## User experience rule (no "go read the plan")
 - Any review material the user must act on (findings + dispositions) must be included directly in the chat response (paste the findings list and the disposition items you are asking the user to confirm).
 - Do not require the user to open the plan artifact to see what the reviewers wrote.
+
+## Q/A wrapper
+- The orchestrator must wrap this output with `/human-qa-loop` to ensure the user explicitly Accepts/Rejects/Defers each finding and provides DR entries where required.
 
 ## Review schema (must be used verbatim)
 Each review must be written into the plan artifact using this exact structure so that validators and follow-on agents can reliably parse it.
@@ -75,6 +73,22 @@ This skill is typically invoked by `/plan` during the Reviews stage. Users can r
 - Zero-context review (doc-reviewer-zero-context)
 - Implementer readiness review (doc-reviewer-implementer)
 - Expert technical review if triggered (doc-reviewer-expert-tech) or mark N/A with rationale
+- Security/privacy review (required)
+
+## Sub-agent routing
+- The orchestrator may spawn each review as a separate sub-agent based on complexity.
+- Combine all findings into the Planning Reviews section before disposition.
+
+### Security/privacy review (required)
+- Focus on auth boundaries, data handling, privacy/compliance, and sensitive data paths.
+- Findings should be short and action-oriented.
+- Use this schema:
+  - Security/privacy risks:
+    - F-001: ...
+  - Missing validations or mitigations:
+    - F-002: ...
+  - Patch suggestions (point to sections):
+    - F-003: ...
 
 ## Disposition rule
 - Each finding becomes Accept / Reject / Defer, and must use the Disposition schema above.
