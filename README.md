@@ -9,6 +9,7 @@ This repo is intentionally mostly “promptware”: `.cursor/skills/*` and `.cur
 - **`/plan` workflow**: produces a single **Plan SSOT** (design + implementation plan + decision log + reviews) with deterministic gates.
 - **`/build` workflow**: implements the plan **as written** (phase-serial, workstream-parallel) with build-time gates.
 - **Sub-agents**: planning reviewers + specialists + build gate owners.
+- **Standalone skills (manual flow)**: run challenge-loops and reviews directly on pasted text, **without a plan artifact**.
 
 ## Install
 
@@ -40,10 +41,9 @@ This is how you keep the workflow from bogging down when you’re doing dev comm
 
 So you have a feature idea, how do you use this to make a plan?
 
-1. **Paste context (recommended)** into chat
-   - Best: constraints + relevant files/dirs (or README snippets) + invariants.
-   - If you provide none, `/plan` will try to infer context from the repo; if it’s truly greenfield it will proceed requirements-only (but will state assumptions explicitly).
-2. **Send your message with `/plan`**
+1. **Send your feature idea with `/plan`** (1–5 bullets is perfect)
+   - You can include context here too (constraints, key files/dirs, invariants), but you don’t have to.
+2. `/plan` will draft the plan and auto-collect context as needed
    - If no plan exists yet, it creates one from the template.
    - It will run **context ingestion** and draft a Context Snapshot.
    - Cursor may ask follow-up questions in a dialog (options + custom field). Answer them normally — you do **not** need to retype `/plan` in those dialog replies.
@@ -60,6 +60,16 @@ So you have a feature idea, how do you use this to make a plan?
 
 > Tip: For “move fast, dev-only” work, set `PlanTier: Lite` and `DeliveryMode: DevOnly`. Rollback can be “revert the commit”, and observability can be `N/A (dev-only, no users)`.
 
+## Manual bottom-up workflow (no plan SSOT)
+If you want to experiment bottom-up (as you described) and keep everything self-contained, use:
+
+- **`/challenge-loop-standalone`**: paste a feature idea or technical approach; get a structured “challenge packet”.
+- **`/review-standalone mode=...`**: paste any doc/excerpt; get strict-schema findings.
+- **`/review-bundle-standalone`**: runs zero-context + implementer-readiness + conditional expert-tech in one shot.
+- **`/disposition-standalone`**: turn findings into Accept/Reject/Defer + lightweight DR entries (manual decision log).
+
+These are designed to be copied into a “real” repo so you can build your own manual flow before automating.
+
 ## What’s in `.cursor/`
 
 ### Skills
@@ -67,6 +77,7 @@ So you have a feature idea, how do you use this to make a plan?
 - **`/plan`**: orchestrates Context → Feature → Technical → Implementation → Reviews with deterministic routing.
 - **`/build`**: executes Implementation Plan phases/tasks exactly, with conformance checks + gates.
 - Supporting skills: `context-ingestion`, `challenge-loop`, `feature-doc-writer`, `technical-planning`, `implementation-planning`, `planning-reviews`, `review`.
+ - Standalone skills: `challenge-loop-standalone`, `review-standalone`, `review-bundle-standalone`, `disposition-standalone`.
 
 ### Agents
 
