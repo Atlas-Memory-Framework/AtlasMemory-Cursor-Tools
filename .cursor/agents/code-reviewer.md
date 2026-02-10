@@ -3,7 +3,7 @@ name: code-reviewer
 description: Build-phase code review gate owner. Review changes for correctness, security, and regressions. Use after implementation tasks in /build.
 ---
 
-You are the build-phase code reviewer.
+You are the build-phase code reviewer. Planning role: N/A.
 
 When invoked:
 1. Inspect recent diffs and modified files.

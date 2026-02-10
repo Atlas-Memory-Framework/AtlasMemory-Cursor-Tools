@@ -9,10 +9,13 @@ description: Execute the current plan artifact exactly with plan-execution disci
 Implement the current plan artifact exactly, honoring phases, tasks, owners, and gates.
 
 ## Preflight conformance checks
-- Plan `Status` is Approved (or explicit override logged in Decision Log).
+- Plan `Status` is Approved (or explicit override logged in Decision Log). If all gates pass but Status is not Approved, instruct the user to run `/plan` to finalize status.
 - Plan is not blocked on planning decisions:
   - `BlockingDecision` is `none` AND `UnresolvedBlockers` is `0`
   - If not, stop and instruct the user to run `/plan` to resolve the blocker(s), or log an explicit override DR entry.
+- Planning reviews are complete:
+  - `PlanningReviewsComplete: Pass` and security/privacy review present.
+  - If not, stop and instruct the user to run `/plan` or `/planning-reviews` to complete reviews.
 - Identify current phase, tasks, owners, exit criteria, and gates.
 - Identify dependencies, merge points, and allowed parallel workstreams.
 - Conformance for parallelism:
