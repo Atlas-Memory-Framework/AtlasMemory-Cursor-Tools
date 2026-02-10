@@ -81,7 +81,9 @@ Definitions / glossary:
 - Term: ...
 
 Open questions:
-- Q1:
+- Q1: <question>
+  - Status: Open | Resolved (DR-xxx) | Deferred (DR-xxx)
+  - Trigger (if Deferred):
 
 Decision boundaries (if any):
 - Decision needed:
@@ -106,6 +108,23 @@ Recommended default: <A/B/C> (why)
 
 ### Questions to Proceed (ranked)
 1) ...
+
+### Repo Security Reality Check (optional but recommended)
+<!-- owner: planning-reviews -->
+<!-- Keep this short and evidence-driven. Do not include secrets. -->
+- Refreshed: <YYYY-MM-DD>
+- Backend JWT proof:
+  - Observed default behavior:
+  - Deployed env fail-closed mechanism:
+  - Evidence hook (named gate):
+- Internal endpoints:
+  - Observed auth enforcement points:
+  - Observed sensitive logging risks (if any):
+  - Evidence hook (named gate):
+- APIM header projection / bypass paths:
+  - Observed projection/overrides:
+  - Bypass risk summary:
+  - Evidence hook (named gate):
 
 ## Challenge Artifacts
 <!-- owner: critical-ideation -->
@@ -142,28 +161,55 @@ Recommended default: <A/B/C> (why)
 
 ## Implementation Plan
 <!-- owner: implementation-planning -->
+### Agent roster (required for PlanTier: Full)
+- <agent/owner>: <responsibilities>
+
 ### File Deltas (exhaustive) + rationale
 - path/to/file.ext - change type (create/modify/delete) - owner (WSx / agent) - rationale
 
 ### Workstreams + merge points
 - WS1: <name> (Owner: <agent>)
-  - Dependencies:
+  - Depends on:
+  - Review gates (named):
+    - G-...
   - Owns files:
     - path/to/file.ext
   - Merge point / integration step:
 
 ### Phases + tasks + exit criteria
 #### Phase 1: <name>
+- Owner(s):
+- Depends on:
 - Tasks (by owner):
   - Owner: <agent>
     - [ ] Task
 - Exit criteria (evidence):
-- Build-time gates:
-  - [ ] Lint/format pass
-  - [ ] Unit tests pass
+- Gates (named):
+  - G-...
+
+### Review gates (named + definitions)
+- G-CI-Lint:
+  - Where it runs: CI | Local | Deployed
+  - Entry point / command:
+  - Green means:
+- G-CI-Unit:
+  - Where it runs: CI | Local | Deployed
+  - Entry point / command:
+  - Green means:
+
+### Merge points -> required gates
+- MP1: <merge point / integration step>
+  - Blocks on:
+    - G-...
 
 ### Test Matrix
 - Area/component - risk - test type - where it runs
+
+### Test plan (CI vs deployed)
+- CI:
+  - ...
+- Deployed environment:
+  - ...
 
 ### Rollout / Rollback
 - Rollout:
@@ -174,6 +220,7 @@ Recommended default: <A/B/C> (why)
 <!-- owner: planning-reviews -->
 ### Zero-Context Review (required)
 - Reviewer: doc-reviewer-zero-context
+- Refreshed: <YYYY-MM-DD>
 - Findings (schema):
   - Missing context:
   - Contradictions:
@@ -188,6 +235,7 @@ Recommended default: <A/B/C> (why)
 ### Expert Technical Review (conditional)
 - Trigger:
 - Reviewer:
+- Refreshed: <YYYY-MM-DD>
 - Findings (schema):
   - Technical risks and integration gaps:
   - Missing validations or operational steps:
@@ -200,6 +248,7 @@ Recommended default: <A/B/C> (why)
 
 ### Security/Privacy Review (required)
 - Reviewer:
+- Refreshed: <YYYY-MM-DD>
 - Findings (schema):
   - Security/privacy risks:
   - Missing validations or mitigations:
@@ -211,6 +260,7 @@ Recommended default: <A/B/C> (why)
 
 ### Implementer Readiness Review (required)
 - Reviewer:
+- Refreshed: <YYYY-MM-DD>
 - Findings:
   - Top 5 gotchas:
   - Evidence needed to prevent each gotcha:

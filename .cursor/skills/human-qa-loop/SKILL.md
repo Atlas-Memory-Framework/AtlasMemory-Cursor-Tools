@@ -24,6 +24,7 @@ Iterate with the user until a target section meets its explicit success criteria
 - Updated target output (draft section)
 - Success criteria checklist with Pass/Fail status
 - NextRequiredUserAction if blocked
+- HumanAgencyFindings (only items that require explicit user approval/decision)
 
 ## Output contract preservation
 - Preserve the sub-agent output contract fields: `DraftSection`, `Checklist`, `Questions`, `Notes`.
@@ -33,9 +34,12 @@ Iterate with the user until a target section meets its explicit success criteria
 ## Modes
 ### mode=comprehension
 Use for technical/implementation planning. The goal is user understanding and informed judgment.
-- Ask the user to restate the plan in their own words.
+- Ask either:
+  - the user to restate the plan in their own words, OR
+  - the user to answer 2–3 targeted confirmation questions + confirm boundaries.
 - Ask 2-3 targeted questions on risks, scope, and tradeoffs.
 - Require explicit confirmation of scope/ownership and gates.
+- Prefer structured questions for decision boundaries and confirmations when possible.
 
 ### mode=disposition
 Use for planning reviews. The goal is explicit Accept/Reject/Defer per finding.
@@ -50,11 +54,13 @@ Fallback for generic clarification. Use the standard loop behavior.
 2) Ask concrete, targeted questions for missing items.
 3) Reject vague confirmations ("looks good") and require specifics.
 4) Patch the target output based on responses.
-5) Repeat until criteria pass or a DR-backed deferral is logged.
+5) Filter findings: only keep items that require human agency (policy/source approval, contradictions with explicit assumptions/SSOT, or Unknown remediation target).
+6) Repeat until criteria pass or a DR-backed deferral is logged.
 
 ## Stop rules
 - Stop only when criteria are satisfied or explicitly deferred with DR entry.
 - Do not advance stages if criteria are incomplete.
+- Do not ask for dispositions on items that were auto-remediated or are not human-agency items.
 
 ## UX rules
 - Keep questions short and specific.

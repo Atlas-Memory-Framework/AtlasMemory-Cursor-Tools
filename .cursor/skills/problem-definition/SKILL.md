@@ -98,3 +98,4 @@ Recommended default: <A/B/C> (why)
 - Do not accept "looks good" without measurable criteria.
 - Ask targeted questions for gaps.
 - If the user defers, record a decision log entry.
+- **Deferred requires DR + trigger (hard rule)**: do not mark anything “Deferred” (scope boundary, constraint, success criteria, or decision boundary) unless there is a `DR-xxx` and an explicit trigger for revisit.

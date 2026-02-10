@@ -54,6 +54,13 @@ Notes:
 - Invariants are listed and respected.
 - NFRs are addressed or explicitly deferred with DR entry.
 
+## Decision Log / DR reference integrity (hard rule)
+- Any `DR-xxx` referenced in the Technical Plan MUST already exist in the plan’s Decision Log.
+- Do not write “per DR-xxx” unless:
+  - that DR exists, OR
+  - you also instruct the orchestrator to create it (and include the exact decision text to log).
+- If you cannot locate/confirm the DR id, remove the reference and instead describe the decision plainly (and/or request a DR to be created).
+
 ## Process
 1) Identify integration points and named interfaces.
 2) Describe architecture changes and sequencing.

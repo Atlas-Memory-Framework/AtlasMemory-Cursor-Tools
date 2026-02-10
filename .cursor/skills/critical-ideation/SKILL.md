@@ -109,3 +109,4 @@ Recommended default: <A/B/C> (why)
 - Be direct; avoid praise or marketing language.
 - Do not invent context; challenge only what is provided.
 - If the user rubber-stamps, require specifics or run the human Q/A loop.
+- **Deferred requires DR + trigger (hard rule)**: do not mark any assumption/test/risk “Deferred” unless you also provide a `DR-xxx` and an explicit trigger for revisit.
